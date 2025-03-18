@@ -1,9 +1,16 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2025-03-17 12:50:52 -0300
-categories: jekyll update
+title:  "Newbie"
+date:   2025-03-16 12:50:52 -0300
+tags: ctf solyd
+level: easy
 ---
+
+Excerpt with multiple paragraphs
+
+Here's another paragraph in the excerpt.
+<!--more-->
+Out-of-excerpt
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
 Jekyll requires blog post files to be named according to the following format:

@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "[Hacking Club] Writeup - Guardian Machine"
+title:  "Guardian"
 date:   2025-03-16 12:50:52 -0300
-categories: writeup
-tags: hackingclub ctf
-excerpt_separator: <!--more-->
+tags: ctf hackingclub
+level: easy
+description: a machine about rce and privesc using sudo
 ---
 
 Excerpt with multiple paragraphs

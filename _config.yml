@@ -28,6 +28,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
+footer: © 2025 João Marcelo S. Gomes. Built with Jekyll using the <a href="https://github.com/b2a3e8/jekyll-theme-console">jekyll-theme-console</a>. <br> The views, thoughts and opinions expressed in this blog belong solely to the author, and not necessarily to the author's employer, organization, committee or other group or individual.
 
 # Build settings
 theme: jekyll-theme-console
@@ -38,7 +39,6 @@ style: dark
 header_pages:
   - index.md
   - about.md
-  - contact.md
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<small>
+    <i>
+        {% if page.date %} | {{ page.date }} {% endif%}
+        {% if page.tags %} {% for tag in page.tags %} | {{ tag }} {% endfor%} {% endif%}
+        {% if page.level %} | {{ page.level }} | {% endif %}
+    </i>
+</small>
+
+{% if page.title %}<h1>{{ page.title }}</h1>{% endif%}
+{% if page.description %} <small>{{ page.description }}</small> {% endif%}
+<br>
+<br>
+{{ content }}
