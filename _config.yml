@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: João Marcelo
+title: ja0x01
 email: ja0x00001@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -28,7 +28,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ja0x01.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ""
 github_username:  ja0x01
-footer: © 2025 João Marcelo S. Gomes. Built with Jekyll using the <a href="https://github.com/b2a3e8/jekyll-theme-console">jekyll-theme-console</a>. <br> The views, thoughts and opinions expressed in this blog belong solely to the author, and not necessarily to the author's employer, organization, committee or other group or individual.
+footer: © 2025 João Marcelo S. Gomes. Built with Jekyll using the <a href="https://github.com/b2a3e8/jekyll-theme-console">jekyll-theme-console</a>. <br> Favicon created by <a href="https://www.flaticon.com/free-icons/code" title="code icons">Freepik - Flaticon</a> <br> The views, thoughts and opinions expressed in this blog belong solely to the author, and not necessarily to the author's employer, organization, committee or other group or individual.
 
 # Build settings
 #theme: jekyll-theme-console
