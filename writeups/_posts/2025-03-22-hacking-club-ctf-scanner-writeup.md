@@ -132,3 +132,66 @@ Therefore, we just need to investigate the server a little at first to get the f
 ![first_flag]({{ "/assets/image/hacking_club_scanner/first_flag.png" | relative_url }})
 
 # privilege escalation
+
+After performing an initial reconnaissance on the server, we didn’t find anything that could help us with privilege escalation. There are no binaries with misconfigured capabilities, there are no SUID files, and we also don’t have the password for the user svc_web to gain sudo access.
+
+However, when listing the root processes running on the server, we identified that there is an open socket on port 9717 running a binary found at the path /opt/secure_vault:
+
+![socat-secure-vault]({{ "/assets/image/hacking_club_scanner/socat-secure-vault.png" | relative_url }})
+
+When we connected to port 9717, we noticed that a login is required to gain access to this application.
+
+![secure_vault_login]({{ "/assets/image/hacking_club_scanner/secure_vault_login.png" | relative_url }})
+
+We will need to analyze this binary to understand how to bypass it. To do this, we downloaded the file using netcat.
+
+In the server:
+
+{% highlight bash%}
+> nc -lvp 8293 < /opt/secure_vault
+{% endhighlight %}
+
+in my local: 
+
+{% highlight bash%}
+> nc serverip 8293 > secure_vault
+{% endhighlight %}
+
+Now we can run the 'strings' command on the binary to check if we find any hardcoded password.
+
+![strings]({{ "/assets/image/hacking_club_scanner/strings.png" | relative_url }})
+
+Nothing. We can only see some type of menu (probably whay comes after the login) and some words like "admin" and "guest". I tried to login using some of combinations of this words (guest as user and admin as pass, and vice-versa) but it doesnt worked.
+
+Lets feed the GHidra.
+
+Opening the binary in Ghidra, we can identify that the program shows the login menu and execute the auth with an specific function:
+
+![secure_vault_main]({{ "/assets/image/hacking_club_scanner/secure_vault_main.png" | relative_url }})
+
+Analyzing the "auth" function, we can detect that the "guest" user does not needs an password to login in the vault:
+
+![secure_vault_auth_function]({{ "/assets/image/hacking_club_scanner/secure_vault_auth_function.png" | relative_url }})
+
+After authenticating the user, the program show an main_menu, which gives the options to create, read and delete an vault, and also an logout option.
+
+By analyzing all the functions of the program, we were able to detect that the variable 'local_30' will have the value /root/secure_vault/vaults/(user). It will be used to list the contents of the logged-in user's vaults. If it is the guest, it will be something like /root/secure_vault/vaults/guest.
+
+![local_30_usage]({{ "/assets/image/hacking_club_scanner/local_30_usage.png" | relative_url }})
+
+Upon analyzing the logout function a bit more carefully, we noticed that when logging out, the program uses the 'free' function to clear the memory address allocated for local_30, and immediately after, it allocates memory for the variable local_50, which is a pointer that will be used to store the user's username. Thus, local_50 and local_30 have the same address in memory.
+
+![uaf]({{ "/assets/image/hacking_club_scanner/uaf.png" | relative_url }})
+
+Thus, we can follow the following steps to gain access to the /root directory:
+
+1 - Login as guest
+2 - Logout
+3 - Login, entering /root as the username, anything as the password.
+4 - The program will continue its execution, and now the value of the local_30 variable is /root, allowing us to read and write files in that directory.
+
+In that way, we can obtain the root flag: 
+
+root_flag.
+
+Basically, the analyzed binary was vulnerable to a Use-After-Free. When cleaning up the memory address allocated for the local_30 variable and immediately after allocating 300 bytes of memory for the local_50 variable during the logout process, the memory address allocated for both variables was the same. This allowed us to modify the value of the local_30 variable to list a directory that is not a vault, but the root directory of the server. Thus, we were able to complete the Scanner challenge :D
