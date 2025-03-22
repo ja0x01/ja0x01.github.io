@@ -25,6 +25,10 @@ body {
     line-height: $base-line-height !important;
 }
 
+img {
+    max-width: $container-max-width;
+}
+
 h1,
 h2,
 h3,
