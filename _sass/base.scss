@@ -5,8 +5,8 @@
  * Style variables
  */
 $base-font-family: 'Source Code Pro', monospace !default;
-$base-font-size: 20px !default;
-$mobile-font-size: 14px !default;
+$base-font-size: 22px !default;
+$mobile-font-size: 16px !default;
 $base-line-height: 1.5 !default;
 $container-width: 90% !default;
 $container-max-width: 40em !default;
@@ -26,7 +26,7 @@ body {
 }
 
 img {
-    max-width: $container-max-width;
+    max-width: $container-width;
 }
 
 h1,
@@ -267,15 +267,26 @@ figure.highlight {
 }
 
 pre {
-    background-color: var(--background-color);
-    border: none;
-    padding: 0;
-    margin: 0;
-    overflow: auto;
-    font-size: $base-font-size;
+    background-color: #33312c;
     color: var(--text-color);
-    line-height: 1.7 !important;
-    font-family: $base-font-family !important;
+    padding: 1.3rem;
+    border-radius: 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: $container-width;
+    width: $container-width;
+}
+
+pre code {
+    display: block;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .highlight .hll {

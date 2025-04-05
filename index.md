@@ -6,5 +6,5 @@ permalink: /
 
 # $ whoami
 João M. Gomes
-…a cybersecurity engineer, passionate about hardware, hacking, Linux, and low-level programming.
+…a DevSecOps engineer, passionate about hardware, hacking, Linux, and low-level programming.
 I use Arch, btw.
